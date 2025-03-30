@@ -1,0 +1,2 @@
+- reduced web site icon (from 1K to 500 byte)
+- reduced navbar icon (from 5K to 2.5K)
