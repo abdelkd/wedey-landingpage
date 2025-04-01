@@ -1,8 +1,11 @@
+
+import { Suspense, lazy } from 'react'
 import { Button } from '@/components/ui/button'
 
-import Navbar from '@/components/navbar';
-import { WhatIsWedey } from '@/components/sections'
+import Navbar from '@/components/navbar'
+import { Sections } from '@/components/sections'
 
+const YoutubeIframe = lazy(() => import('@/components/youtube-iframe'))
 
 export default function Home() {
   return (
@@ -19,9 +22,11 @@ export default function Home() {
           <Button className="text-lg px-6 py-6 mt-10">Get Started</Button>
         </div>
         <div className="mx-auto w-fit mt-14 border border-black my-16">
-          <iframe width="672" height="378" src="https://www.youtube.com/embed/Xpp4Y7ZYcak?si=LYMMNTRFZ8k-XP4r" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullscreen></iframe>
+          <Suspense fallback={<p>loading...</p>}>
+            <YoutubeIframe />
+          </Suspense>
         </div>
-        <WhatIsWedey />
+        <Sections />
       </main>
     </div>
   );
