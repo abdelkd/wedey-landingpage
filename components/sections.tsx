@@ -117,7 +117,7 @@ const howItWorksSubsection: HowItWorksSubsection[] = [
 ];
 
 function HowItWorksSectionAnimation() {
-  const [activeSlide, setActiveSlide] = useState(0)
+  const [activeSlide] = useState(0)
 
   return <div className='w-full grid grid-cols-1 md:grid-cols-2 border border-red-500'>
     <div>
