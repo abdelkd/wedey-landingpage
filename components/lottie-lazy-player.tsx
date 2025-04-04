@@ -10,11 +10,12 @@ const LazyPlayer = lazy(() => import('@/components/lottie-player'))
 export default function LottieLazyPlayer({ src, ...props }: IPlayerProps) {
   const [isMounted, setIsMounted] = useState(false);
   const { width, isMobile } = useViewport();
+
   useEffect(() => { setIsMounted(true) }, [])
 
-  if (!isMounted) return <Skeleton className="h-[375px] max-w-[372px] min-w-[400px] w-full" />;
+  if (!isMounted) return <Skeleton className="h-full w-full" />;
 
-  return <Suspense fallback={<Skeleton className="h-[375px] max-w-[372px] min-w-[400px] w-full" />}>
+  return <Suspense fallback={<Skeleton className="h-full w-full" />}>
     <LazyPlayer
       className='h-[375px] max-w-[372px] min-w-[280px] w-full'
       src={src}

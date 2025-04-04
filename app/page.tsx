@@ -29,16 +29,16 @@ export default function Home() {
           </p>
           <Button className="text-lg px-6 py-6 mt-10">Get Started</Button>
         </div>
-        <div className="mt-14 border border-black my-16 w-10/12 mx-auto sm:w-full sm:max-w-xl min-h-96 flex">
+        <div className="mt-14 border border-black my-16 w-10/12 mx-auto sm:w-full sm:max-w-3xl min-h-96 flex rounded-lg">
           {isYoutubeLoaded ? 
             <Suspense fallback={<Skeleton className="w-full" />}>
               <YoutubeIframe />
             </Suspense> : 
             <div 
-              className='w-full min-h-full flex justify-center items-center' 
+              className='w-full min-h-full flex justify-center items-center rounded-lg' 
               style={backgroundStyle}>
               
-              <Button className="absolute flex justify-center items-center p-4 rounded-full size-14 bg-zinc-900/80" onClick={() => setIsYoutubeLoaded(true)}>
+              <Button className="absolute flex justify-center items-center p-4 rounded-full size-14 bg-zinc-900/80 cursor-pointer" onClick={() => setIsYoutubeLoaded(true)}>
                 <Play className="size-8" />
               </Button>
             </div>

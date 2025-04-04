@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react'
 import { CheckIcon } from 'lucide-react'
+import clsx from 'clsx'
 
 import LottieLazyPlayer from '@/components/lottie-lazy-player'
 
@@ -26,13 +27,13 @@ export function Sections() {
           What Is Wedey
         </h2>
       </div>
-      <div className="flex flex-col items-center sm:flex-row md:gap-4 max-w-6xl mx-auto w-full px-8 md:px-2">
+      <div className="flex flex-col items-center lg:flex-row md:gap-4 max-w-5xl mx-auto w-full px-8 md:px-2">
         <div className="flex flex-1 flex-col gap-3 justify-center space-y-3 max-w-sm w-full">
           {slides.map((slide) => (
             <button key={slide.key} onClick={() => setActiveSlide(slide.key)} className={`text-left text-lg border-b-2 w-fit ${slide.key !== activeSlide ? 'text-zinc-500' : 'border-b-black'}`}>{slide.buttonLabel}</button>
           ))}
         </div>
-        <div className="flex h-[375px] w-[372px]">
+        <div className="flex h-96 w-86">
           {activeSlide === 'exclusive-pool' ? <LottieLazyPlayer src={JSONSelectProfiles} /> : null}
           {activeSlide === 'innovative-platform' ? <LottieLazyPlayer src={JSONFlexibleSupport} /> : null}
           {activeSlide === 'tech-partner' ? <LottieLazyPlayer src={JSONAIMatching} /> : null}
@@ -47,7 +48,7 @@ export function Sections() {
     </section>
 
     <div className='m-16' />
-    <section className="flex flex-col w-10/12 sm:grid sm:grid-cols-2 md:w-full max-w-5xl mx-auto min-h-96 gap-7">
+    <section className="flex flex-col items-around w-10/12 sm:flex sm:flex-row sm:px-8  md:w-full max-w-5xl mx-auto min-h-96">
       <div className="w-full border px-10 flex flex-col py-32 rounded-lg bg-gray-50/40 max-w-md">
         <div className="flex-1">
           <h2 className="text-3xl font-semibold">Global Tech Talent at Your Fingertips: The Wedey Promise</h2>
@@ -92,7 +93,7 @@ export function Sections() {
     </section>
 
     <div className='m-16' />
-    <section className="mx-auto gap-7 min-h-96 bg-pink-200/70 px-20 py-28">
+    <section className="mx-auto gap-7 min-h-96 bg-pink-200/70 px-4 py-28">
       <div className="flex justify-between mb-20">
         <h2 className="font-semibold text-4xl">How It Works ?</h2>
         <Button>Learn More</Button>
@@ -102,22 +103,36 @@ export function Sections() {
   </div>
 }
 
-type HowItWorksSectionAnimationProps = {
-  subsections?: {
-    title: string;
-    description: string;
-    lottiefilesUrl: string;
-  }[]
+interface HowItWorksSubsection {
+  title: string;
+  description: string;
+  lottiefilesUrl: string;
 }
 
-function HowItWorksSectionAnimation({ }: HowItWorksSectionAnimationProps) {
-  return <div className='w-full grid grid-cols-2'>
+const howItWorksSubsection: HowItWorksSubsection[] = [
+  {title: 'Define Your Needs', description: 'Use our intuitive interface to specify your needs and selection criteria, defining the ideal profile for your project.', lottiefilesUrl: ''},
+  {title: 'AI Talent Matching', description: 'Let our AI-powered platform match you with the perfect tech talent in seconds, based on thousands of data points for precise results.', lottiefilesUrl: ''},
+  {title: 'Interviews and Selection', description: 'Easily schedule interviews with candidates through our platform. A dedicated account manager will aid you through it.', lottiefilesUrl: ''},
+  {title: 'Smooth Onboarding and Flexibility', description: 'Enjoy a 14-day trial period to evaluate the fit. Then, benefit from a seamless onboarding process and a contract that offers total flexibility.', lottiefilesUrl: ''},
+];
+
+function HowItWorksSectionAnimation() {
+  const [activeSlide, setActiveSlide] = useState(0)
+
+  return <div className='w-full grid grid-cols-1 md:grid-cols-2 border border-red-500'>
     <div>
-      <ul>
-        <li className="flex flex-col gap-4 border-l-white border-l-4 py-6 pl-5">
-          <span className="font-semibold text-xl text-zinc-800">1. How It Works</span>
-          <span>Use our intuitive interface to specify your needs and selection criteria, defining the ideal profile for your project.</span>
-        </li>
+      <ul className="border border-green-500">
+        {howItWorksSubsection.map((subsection, index) => (
+          <li key={subsection.title} className={clsx("flex flex-col gap-4 border-l-4 py-6 pl-5", { "border-l-peach": activeSlide === index, "border-l-white": activeSlide !== index })}>
+            <span className="font-semibold text-xl text-zinc-800">{index+1}. {subsection.title}</span>
+            <span>{subsection.description}</span>
+            {activeSlide === index ? (
+              <div className="w-full h-76 bg-green-400 md:hidden">
+                <LottieLazyPlayer src={JSONSelectProfiles} />
+              </div>
+            ) : null}
+          </li>  
+        ))}
       </ul>
     </div>
   </div>

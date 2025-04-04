@@ -3,6 +3,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --color-peach: oklch(0.82 0.1174 53.56);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
