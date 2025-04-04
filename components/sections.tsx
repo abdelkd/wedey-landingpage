@@ -110,10 +110,10 @@ export function Sections() {
   </div>
 }
 
-interface HowItWorksSubsection {
+interface HowItWorksSubsection<> {
   title: string;
   description: string;
-  lottiefilesUrl: string;
+  lottieFileData: unknown & {};
   borderClass: string;
 }
 
