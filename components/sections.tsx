@@ -26,18 +26,18 @@ export function Sections() {
           What Is Wedey
         </h2>
       </div>
-      <div className="flex flex-col items-center md:flex-row md:gap-8 max-w-6xl mx-auto w-full px-8 md:px-0 gap-4">
-        <div className="flex flex-col gap-3 justify-center space-y-3 w-fit">
+      <div className="flex flex-col items-center sm:flex-row md:gap-4 max-w-6xl mx-auto w-full px-8 md:px-2">
+        <div className="flex flex-1 flex-col gap-3 justify-center space-y-3 max-w-sm w-full">
           {slides.map((slide) => (
             <button key={slide.key} onClick={() => setActiveSlide(slide.key)} className={`text-left text-lg border-b-2 w-fit ${slide.key !== activeSlide ? 'text-zinc-500' : 'border-b-black'}`}>{slide.buttonLabel}</button>
           ))}
         </div>
-        <div className="flex flex-1 h-[375px] w-[372px]">
+        <div className="flex h-[375px] w-[372px]">
           {activeSlide === 'exclusive-pool' ? <LottieLazyPlayer src={JSONSelectProfiles} /> : null}
           {activeSlide === 'innovative-platform' ? <LottieLazyPlayer src={JSONFlexibleSupport} /> : null}
           {activeSlide === 'tech-partner' ? <LottieLazyPlayer src={JSONAIMatching} /> : null}
         </div>
-        <div className="flex justify-center items-center max-w-md">
+        <div className="flex justify-center items-center max-w-[300px]">
           {slides.find((slide => slide.key === activeSlide))?.description}
         </div>
       </div>
@@ -47,8 +47,8 @@ export function Sections() {
     </section>
 
     <div className='m-16' />
-    <section className="grid grid-cols-2 w-full max-w-5xl mx-auto min-h-96 gap-7">
-      <div className="w-full border px-10 flex flex-col py-32 rounded-lg bg-gray-50/40">
+    <section className="flex flex-col w-10/12 sm:grid sm:grid-cols-2 md:w-full max-w-5xl mx-auto min-h-96 gap-7">
+      <div className="w-full border px-10 flex flex-col py-32 rounded-lg bg-gray-50/40 max-w-md">
         <div className="flex-1">
           <h2 className="text-3xl font-semibold">Global Tech Talent at Your Fingertips: The Wedey Promise</h2>
           <p className="text-md mt-8 text-zinc-500">Access a global pool of qualified tech talents ready to integrate into your team. Benefit from dedicated support and rigorous selection for successful and innovative collaboration.</p>
