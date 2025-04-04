@@ -7,7 +7,7 @@ type Viewport = {
     isMobile?: boolean;
 }
 
-export const useViewport = ({ width, height }: Optional<Viewport> = {}) => {
+export const useViewport = ({ width, height }: Optional<Viewport> = { width: 0, height: 0, isMobile: true }) => {
     const [viewport, setViewport] = useState<Viewport>({ width: 0, height: 0, isMobile: true });
 
     const handleResize = () => {
