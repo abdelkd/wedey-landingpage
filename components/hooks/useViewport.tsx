@@ -11,7 +11,7 @@ export const useViewport = ({ width, height }: Optional<Viewport> = {}) => {
     const [viewport, setViewport] = useState<Viewport>({ width: 0, height: 0, isMobile: true });
 
     const handleResize = () => {
-        setViewport({ width: window.innerWidth, height: window.innerHeight: isMobile: window.innerWidth < 400 })
+        setViewport({ width: window.innerWidth, height: window.innerHeight, isMobile: window.innerWidth < 400 })
     }
 
     useEffect(() => {
