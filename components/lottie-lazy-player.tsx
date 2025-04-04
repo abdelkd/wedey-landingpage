@@ -17,7 +17,7 @@ export default function LottieLazyPlayer({ src, ...props }: IPlayerProps) {
 
   return <Suspense fallback={<Skeleton className="h-full w-full" />}>
     <LazyPlayer
-      className='h-[375px] max-w-[372px] min-w-[280px] w-full'
+      className={props.className ?? ''}
       src={src}
       // @ts-expect-error TODO
       width={isMobile && width ? width - 10 : width ?? 320}

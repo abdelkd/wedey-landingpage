@@ -8,6 +8,12 @@ import LottieLazyPlayer from '@/components/lottie-lazy-player'
 import JSONSelectProfiles from '@/components/lottiefiles/select_profiles.json'
 import JSONFlexibleSupport from '@/components/lottiefiles/flexible_support.json'
 import JSONAIMatching from '@/components/lottiefiles/ai_matching.json'
+
+import JSONDefineNeeds from '@/components/lottiefiles/define_needs.json'
+import JSONAITalentMatching from '@/components/lottiefiles/ai_talent_matching.json'
+import JSONInterviewsSelection from '@/components/lottiefiles/interviews_selection.json'
+import JSONSmoothOnboarding from '@/components/lottiefiles/smooth_onboarding.json'
+
 import { Button } from '@/components/ui/button';
 
 type ActiveSlides = typeof slides[number]['key']
@@ -19,6 +25,7 @@ const slides = [
 
 export function Sections() {
   const [activeSlide, setActiveSlide] = useState<ActiveSlides>(slides[0].key)
+  const lazyPlayerClassName = 'h-[375px] max-w-[372px] min-w-[280px] w-full'
 
   return <div className="spacey-y-10">
     <section className="flex flex-col items-center mx-auto w-fit py-8">
@@ -34,9 +41,9 @@ export function Sections() {
           ))}
         </div>
         <div className="flex h-96 w-86">
-          {activeSlide === 'exclusive-pool' ? <LottieLazyPlayer src={JSONSelectProfiles} /> : null}
-          {activeSlide === 'innovative-platform' ? <LottieLazyPlayer src={JSONFlexibleSupport} /> : null}
-          {activeSlide === 'tech-partner' ? <LottieLazyPlayer src={JSONAIMatching} /> : null}
+          {activeSlide === 'exclusive-pool' ? <LottieLazyPlayer className={lazyPlayerClassName} src={JSONSelectProfiles} /> : null}
+          {activeSlide === 'innovative-platform' ? <LottieLazyPlayer className={lazyPlayerClassName} src={JSONFlexibleSupport} /> : null}
+          {activeSlide === 'tech-partner' ? <LottieLazyPlayer className={lazyPlayerClassName} src={JSONAIMatching} /> : null}
         </div>
         <div className="flex justify-center items-center max-w-[300px]">
           {slides.find((slide => slide.key === activeSlide))?.description}
@@ -48,7 +55,7 @@ export function Sections() {
     </section>
 
     <div className='m-16' />
-    <section className="flex flex-col items-around w-10/12 sm:flex sm:flex-row sm:px-8  md:w-full max-w-5xl mx-auto min-h-96">
+    <section className="flex flex-col items-around w-10/12 sm:flex sm:flex-row sm:px-8  md:w-full max-w-5xl mx-auto min-h-96 gap-4">
       <div className="w-full border px-10 flex flex-col py-32 rounded-lg bg-gray-50/40 max-w-md">
         <div className="flex-1">
           <h2 className="text-3xl font-semibold">Global Tech Talent at Your Fingertips: The Wedey Promise</h2>
@@ -78,7 +85,7 @@ export function Sections() {
         <ul className="mt-9 text-xl space-y-3 text-zinc-700">
           <li className="flex gap-4">
             <div className="bg-red-300 size-7 flex justify-center items-center rounded-full"><CheckIcon className="size-5" /></div>
-            Unprecedented Reach
+            Optimized Costs, Maximized Value
           </li>
           <li className="flex gap-4">
             <div className="bg-red-300 size-7 flex justify-center items-center rounded-full"><CheckIcon className="size-5" /></div>
@@ -86,7 +93,7 @@ export function Sections() {
           </li>
           <li className="flex gap-4">
             <div className="bg-red-300 size-7 flex justify-center items-center rounded-full"><CheckIcon className="size-5" /></div>
-            Dedicated Support
+            Accelerated Recruitment
           </li>
         </ul>
       </div>
@@ -107,33 +114,40 @@ interface HowItWorksSubsection {
   title: string;
   description: string;
   lottiefilesUrl: string;
+  borderClass: string;
 }
 
 const howItWorksSubsection: HowItWorksSubsection[] = [
-  {title: 'Define Your Needs', description: 'Use our intuitive interface to specify your needs and selection criteria, defining the ideal profile for your project.', lottiefilesUrl: ''},
-  {title: 'AI Talent Matching', description: 'Let our AI-powered platform match you with the perfect tech talent in seconds, based on thousands of data points for precise results.', lottiefilesUrl: ''},
-  {title: 'Interviews and Selection', description: 'Easily schedule interviews with candidates through our platform. A dedicated account manager will aid you through it.', lottiefilesUrl: ''},
-  {title: 'Smooth Onboarding and Flexibility', description: 'Enjoy a 14-day trial period to evaluate the fit. Then, benefit from a seamless onboarding process and a contract that offers total flexibility.', lottiefilesUrl: ''},
+  {title: 'Define Your Needs', description: 'Use our intuitive interface to specify your needs and selection criteria, defining the ideal profile for your project.', lottieFileData: JSONDefineNeeds, borderClass: 'border-l-peach'},
+  {title: 'AI Talent Matching', description: 'Let our AI-powered platform match you with the perfect tech talent in seconds, based on thousands of data points for precise results.', lottieFileData: JSONAITalentMatching, borderClass: 'border-l-purple'},
+  {title: 'Interviews and Selection', description: 'Easily schedule interviews with candidates through our platform. A dedicated account manager will aid you through it.', lottieFileData: JSONInterviewsSelection, borderClass: 'border-l-green'},
+  {title: 'Smooth Onboarding and Flexibility', description: 'Enjoy a 14-day trial period to evaluate the fit. Then, benefit from a seamless onboarding process and a contract that offers total flexibility.', lottieFileData: JSONSmoothOnboarding, borderClass: 'border-l-yellow'},
 ];
 
 function HowItWorksSectionAnimation() {
-  const [activeSlide] = useState(0)
+  const [activeSlide, setActiveSlide] = useState(0)
 
-  return <div className='w-full grid grid-cols-1 md:grid-cols-2 border border-red-500'>
-    <div>
-      <ul className="border border-green-500">
+  return <div className='w-full grid grid-cols-1 md:grid-cols-2 md:gap-2'>
+    <div className="w-full flex justify-between">
+      <ul className="">
         {howItWorksSubsection.map((subsection, index) => (
-          <li key={subsection.title} className={clsx("flex flex-col gap-4 border-l-4 py-6 pl-5", { "border-l-peach": activeSlide === index, "border-l-white": activeSlide !== index })}>
-            <span className="font-semibold text-xl text-zinc-800">{index+1}. {subsection.title}</span>
-            <span>{subsection.description}</span>
-            {activeSlide === index ? (
-              <div className="w-full h-76 bg-green-400 md:hidden">
-                <LottieLazyPlayer src={JSONSelectProfiles} />
-              </div>
-            ) : null}
-          </li>  
+          <button key={subsection.title} className="text-start cursor-pointer" onClick={() => setActiveSlide(index)}>
+            <li className={clsx("flex flex-col gap-4 border-l-4 py-6 pl-5", { [subsection.borderClass]: activeSlide === index, "border-l-white": activeSlide !== index })}>
+              <span className="font-semibold text-xl text-zinc-800">{index+1}. {subsection.title}</span>
+              <span>{subsection.description}</span>
+              {activeSlide === index ? (
+                <div className="w-full h-76 bg-green-400 md:hidden relative">
+                  <LottieLazyPlayer className='w-full abolute top-0' src={subsection.lottieFileData} />
+                </div>
+              ) : null}
+            </li>
+          </button>  
         ))}
       </ul>
+
+    </div>
+    <div className="h-96 mr-auto w-full">
+      <LottieLazyPlayer src={howItWorksSubsection[activeSlide].lottieFileData} />
     </div>
   </div>
 }
