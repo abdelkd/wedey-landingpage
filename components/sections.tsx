@@ -20,14 +20,14 @@ export function Sections() {
   const [activeSlide, setActiveSlide] = useState<ActiveSlides>(slides[0].key)
 
   return <div className="spacey-y-10">
-    <section className="mx-auto w-fit py-8">
+    <section className="flex flex-col items-center mx-auto w-fit py-8">
       <div className="flex justify-center items-center mb-4">
         <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
           What Is Wedey
         </h2>
       </div>
-      <div className="grid grid-cols-3 max-w-6xl mx-auto">
-        <div className="flex flex-col gap-3 justify-center space-y-3">
+      <div className="flex flex-col items-center md:flex-row md:gap-8 max-w-6xl mx-auto w-full px-8 md:px-0 gap-4">
+        <div className="flex flex-col gap-3 justify-center space-y-3 w-fit">
           {slides.map((slide) => (
             <button key={slide.key} onClick={() => setActiveSlide(slide.key)} className={`text-left text-lg border-b-2 w-fit ${slide.key !== activeSlide ? 'text-zinc-500' : 'border-b-black'}`}>{slide.buttonLabel}</button>
           ))}
@@ -37,7 +37,7 @@ export function Sections() {
           {activeSlide === 'innovative-platform' ? <LottieLazyPlayer src={JSONFlexibleSupport} /> : null}
           {activeSlide === 'tech-partner' ? <LottieLazyPlayer src={JSONAIMatching} /> : null}
         </div>
-        <div className="px-4 flex justify-center items-center">
+        <div className="flex justify-center items-center max-w-md">
           {slides.find((slide => slide.key === activeSlide))?.description}
         </div>
       </div>

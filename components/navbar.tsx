@@ -26,10 +26,10 @@ export default function Navbar() {
             <Image src="/logo.webp" width={128} height={64} alt="logo" />
         </div>
         <div className="flex gap-6">
-            <div><p className="text-zinc-800 text-md flex gap-1">For Companies <ChevronDown /></p></div>
-            <div><p className="text-zinc-800 text-md flex gap-1">For Talents <ChevronDown /></p></div>
-            <div><p className="text-zinc-800 text-md flex gap-1">About Us <ChevronDown /></p></div>
-            <div><p className="text-zinc-800 text-md">Blog</p></div>
+            <div><p className="hidden text-zinc-800 text-md md:flex gap-1">For Companies <ChevronDown /></p></div>
+            <div><p className="hidden text-zinc-800 text-md md:flex gap-1">For Talents <ChevronDown /></p></div>
+            <div><p className="hidden text-zinc-800 text-md md:flex gap-1">About Us <ChevronDown /></p></div>
+            <div><p className="hidden text-zinc-800 text-md md:hidden">Blog</p></div>
         </div>
         <div className="h-10 flex items-center gap-3">
         <DropdownMenu>
