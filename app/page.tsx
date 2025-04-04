@@ -38,7 +38,7 @@ export default function Home() {
               className='w-full min-h-full flex justify-center items-center' 
               style={backgroundStyle}>
               
-              <Button className="absolute flex justify-center items-center px-4 h-12 w-22" onClick={() => setIsYoutubeLoaded(true)}>
+              <Button className="absolute flex justify-center items-center p-4 rounded-full size-14 bg-zinc-900/80" onClick={() => setIsYoutubeLoaded(true)}>
                 <Play className="size-8" />
               </Button>
             </div>
