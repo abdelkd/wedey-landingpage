@@ -10,16 +10,15 @@ type Viewport = {
 export const useViewport = ({ width, height }: Optional<Viewport> = {}) => {
     const [viewport, setViewport] = useState<Viewport>({ width: 0, height: 0, isMobile: true });
 
+    const handleResize = () => {
+        setViewport({ width: window.innerWidth, height: window.innerHeight: isMobile: window.innerWidth < 400 })
+    }
+
     useEffect(() => {
-        if (window === undefined) return;
-
-        const width = window.innerWidth;
-
-        setViewport({
-            width,
-            height: window.innerHeight,
-            isMobile: width < 420,
-        })
+        window.addEventListener('resize', handleResize)
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
     }, [])
 
     return viewport
