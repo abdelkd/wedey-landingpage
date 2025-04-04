@@ -18,7 +18,7 @@ export default function LottieLazyPlayer({ src, ...props }: IPlayerProps) {
     <LazyPlayer
       className='h-[375px] max-w-[372px] min-w-[280px] w-full'
       src={src}
-      width={isMobile ? width - 10 : width}
+      width={isMobile && width ? width - 10 : width ?? 320}
       autoplay
       loop
       {...props}
