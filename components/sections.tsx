@@ -146,7 +146,7 @@ function HowItWorksSectionAnimation() {
       </ul>
 
     </div>
-    <div className="h-96 mr-auto w-full">
+    <div className="h-96 mr-auto w-full hidden md:block">
       <LottieLazyPlayer src={howItWorksSubsection[activeSlide].lottieFileData} />
     </div>
   </div>
